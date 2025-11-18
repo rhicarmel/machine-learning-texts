@@ -1,4 +1,4 @@
-# 🗂️ Machine Learning for Texts | Data Science Project
+# 💬 Machine Learning for Texts | Data Science Project
 ### Sentiment Classification of Movie Reviews  
 <div align="center">
 
