@@ -1,0 +1,19 @@
+name: nlp-sentiment-env
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pandas=2.2.1
+  - numpy=1.26.4
+  - scikit-learn=1.4.0
+  - matplotlib=3.8.2
+  - seaborn=0.13.1
+  - nltk=3.8.1
+  - spacy=3.7.2
+  - lightgbm=4.1.0
+  - pip
+  - pip:
+      - torch==2.1.2
+      - transformers==4.37.2
+      - tqdm==4.66.1
