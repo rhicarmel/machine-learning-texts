@@ -1,0 +1,40 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# VS Code and IDE settings
+.vscode/
+.idea/
+*.code-workspace
+
+# macOS system files
+.DS_Store
+
+# Python packaging
+build/
+dist/
+*.egg-info/
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+
+# PyTorch / transformers cache (optional)
+.cache/
+huggingface/
+torch_cache/
+
+# Data (optional, only if you do NOT want to commit raw data)
+# data/
+# *.tsv
