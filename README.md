@@ -3,7 +3,7 @@
 <div align="center">
 
 [![Open Notebook](https://img.shields.io/badge/View_Notebook-8A2BE2?style=for-the-badge)](./notebooks/nlp_sentiment_analysis.ipynb)
-[![Dataset](https://img.shields.io/badge/Download_Dataset-IMDb_Reviews-4B8B3B?style=for-the-badge)](https://ai.stanford.edu/~amaas/data/sentiment/)
+[![Dataset](https://img.shields.io/badge/Download_Dataset-IMDb_Reviews-4B8B3B?style=for-the-badge)](https://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz)
 
 </div>
 
@@ -28,10 +28,10 @@ The goal is to determine whether a review expresses a **positive** or **negative
 
 This project uses the IMDb Reviews dataset (Maas et al., 2011).
 
-🔗 **Download dataset (direct link):**  
+🔗 Full dataset page (documentation & description):  
 https://ai.stanford.edu/~amaas/data/sentiment/
 
-Place the file `imdb_reviews.tsv` into the `./data/` folder before running the notebook.
+Place the downloaded file into the `/data/` folder and extract.
 
 **Key fields:**  
 
