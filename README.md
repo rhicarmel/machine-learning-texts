@@ -1,116 +1,100 @@
-# Movie Review Sentiment Classification  
+# 🗂️ Machine Learning for Texts | Data Science Project
+### Sentiment Classification of Movie Reviews  
+<div align="center">
 
-Natural Language Processing with TF-IDF, LightGBM, and BERT Embeddings  
-**Author: Rhiannon Fillingham**
+[![Open Notebook](https://img.shields.io/badge/View_Notebook-8A2BE2?style=for-the-badge)](./nlp_sentiment_analysis.ipynb)
+[![Dataset](https://img.shields.io/badge/Dataset-IMDb_Reviews-4B8B3B?style=for-the-badge)](./data/imdb_reviews.tsv)
+
+</div>
+
+## Project Overview
+
+This project builds, compares, and evaluates multiple machine learning models for **binary sentiment classification** on IMDb-style movie reviews.  
+The goal is to determine whether a review expresses a **positive** or **negative** opinion using both classical machine learning and modern NLP methods.
+
+**Included in the workflow:**
+
+- Text normalization and preprocessing  
+- spaCy lemmatization  
+- TF-IDF feature engineering  
+- Classical models (Logistic Regression, LightGBM)  
+- Deep contextual embeddings (BERT)  
+- A unified evaluation pipeline (ROC, PRC, F1 curves)  
+- Custom review predictions for real-world testing  
 
 ---
 
-## Overview  
+## 📁 Dataset
 
-The Film Junky Union wants to automate the process of filtering large volumes of movie reviews.  
-Using an IMDB-based dataset with labeled sentiment, I built several machine learning models to classify reviews as **positive or negative**, with a performance target of **F1 ≥ 0.85** on the test set.
+This project uses the IMDb Reviews dataset (Maas et al., 2011).
 
-This project demonstrates text preprocessing, exploratory analysis, TF-IDF vectorization, classical machine learning, gradient boosting, and transformer-based embeddings (BERT).
+🔗 **Download dataset (direct link):**  
+https://ai.stanford.edu/~amaas/data/sentiment/
 
----
-
-## Dataset  
-
-**Source:** IMDB reviews (Maas et al., ACL 2011)  
-**File:** `imdb_reviews.tsv`
+Place the file `imdb_reviews.tsv` into the `./data/` folder before running the notebook.
 
 **Key fields:**  
 
 - `review` — review text  
 - `pos` — sentiment label (`1` = positive, `0` = negative)  
-- `ds_part` — train or test designation  
-
-Additional fields such as `start_year`, `tconst`, and `votes` were explored during EDA.
-
----
-
-## Approach  
-
-### 1. Exploratory Data Analysis  
-
-- Examined sentiment balance across train/test sets  
-- Explored review lengths and text distribution  
-- Analyzed review volume by year and movie  
-
-### 2. Text Preprocessing  
-
-- Lowercasing  
-- Removing digits and punctuation  
-- Tokenization (NLTK)  
-- Lemmatization (spaCy)  
-- Train/test separation using `ds_part`  
-
-### 3. Feature Engineering  
-
-- TF-IDF vectorization (unigrams + bigrams)  
-- Lemmatized text vectorization  
-- BERT embeddings via a pre-trained transformer model  
-
-### 4. Models Trained  
-
-- Logistic Regression (TF-IDF baseline)  
-- Logistic Regression (lemmatized TF-IDF)  
-- LightGBM Classifier (TF-IDF)  
-- Logistic Regression on BERT embeddings  
-
-### 5. Evaluation Metrics  
-
-- F1-score (primary metric)  
-- ROC-AUC  
-- Average Precision Score  
+- `ds_part` — train or test split  
+- Additional metadata (`start_year`, `tconst`, `votes`) was explored during EDA.
 
 ---
 
-## Results  
+## 📊 Results  
 
 | Model | F1 Score | ROC-AUC | APS | Notes |
 |-------|----------|---------|---------|-------|
-| TF-IDF + Logistic Regression | ~0.88 | ~0.95 | ~0.95 | Strong, simple baseline |
+| TF-IDF + Logistic Regression | ~0.88 | ~0.95 | ~0.95 | Strong baseline |
 | Lemmatized TF-IDF + Logistic Regression | ~0.88 | ~0.95 | ~0.95 | Similar performance |
-| TF-IDF + LightGBM | ~0.88 | ~0.95 | ~0.95 | Better probability ranking |
-| **BERT Embeddings + Logistic Regression** | **~0.89+** | **Highest** | **Highest** | Most nuanced and consistent |
+| TF-IDF + LightGBM | ~0.88 | ~0.95 | ~0.95 | Better probability calibration |
+| BERT Embeddings + Logistic Regression (sampled) | ~0.81 | High | High | Strong contextual modeling |
 
-**Final Model:**  
-**BERT embeddings + Logistic Regression** delivered the strongest overall performance while maintaining interpretability and speed on reduced samples.
+**Final Model (Full Dataset):**  
+**🟦 Model 4 — LightGBM + TF-IDF + spaCy Lemmatization**  
+Delivered the strongest overall performance on the full dataset.
 
 All models achieved or exceeded the required **F1 ≥ 0.85**.
 
 ---
 
-## Example Predictions  
+## 🔍 Example Predictions  
 
-**Review:**  
-“Surprisingly thoughtful and emotional. I didn’t expect to enjoy it this much.”  
-**Prediction:** Positive  
+Below are sample predictions from **🟦 Model 4**, the top full-dataset model:
 
-**Review:**  
-“This movie dragged endlessly, and the plot made absolutely no sense.”  
-**Prediction:** Negative  
+| Review | Probability Positive | Sentiment |
+|--------|----------------------|-----------|
+| “I was really fascinated with the movie.” | 0.60 | Positive |
+| “I fell asleep in the middle of the movie.” | 0.47 | Negative |
+| “What a rotten attempt at a comedy.” | 0.15 | Negative |
+| “Launching on Netflix was a brave move…” | 0.73 | Positive |
 
-Testing custom reviews confirms consistent model behavior across writing styles.
-
----
-
-## Tech Stack  
-
-- Python  
-- Pandas, NumPy  
-- Scikit-learn  
-- NLTK  
-- spaCy  
-- LightGBM  
-- Transformers (HuggingFace)  
-- PyTorch  
-- Matplotlib, Seaborn  
+The model performs well on both clear and nuanced sentiment.
 
 ---
 
-## Environment Setup  
+## 🧰 Tech Stack
+
+<div align="center">
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/Scikit--Learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white)
+![NLTK](https://img.shields.io/badge/NLTK-026AA7?style=for-the-badge)
+![spaCy](https://img.shields.io/badge/spaCy-09A3D5?style=for-the-badge)
+![LightGBM](https://img.shields.io/badge/LightGBM-00A64F?style=for-the-badge)
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
+![Transformers](https://img.shields.io/badge/Transformers-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge)
+![Seaborn](https://img.shields.io/badge/Seaborn-4C78A8?style=for-the-badge)
+
+</div>
+
+---
+
+## ⚙️ Environment Setup  
 
 You can recreate the project environment using either **Conda** or **pip**.
 
@@ -151,7 +135,7 @@ nltk.download("stopwords")
 
 ---
 
-## Run the Notebook
+## ▶️ Run the Notebook
 
 Once your environment is activated and dependencies are installed, launch Jupyter Notebook from the project root:
 
@@ -161,7 +145,7 @@ jupyter notebook notebooks/nlp_sentiment_analysis.ipynb
 
 ---
 
-## Repository Structure
+## 📂 Repository Structure
 
 ```
 project/
@@ -181,16 +165,15 @@ project/
 
 ---
 
-## Future Improvements
+## 🌱 Future Improvements
 
 - Fine-tune a transformer model directly for full-text classification
 
 - Explore hyperparameter optimization for LightGBM and logistic regression
 
-- Improve preprocessing with profanity and emoji normalization
-
-- Package the model into an API endpoint for deployment
-
 ---
 
-**Author: Rhiannon Fillingham**
+**👩🏻‍💻 Author: Rhiannon Fillingham**
+<p align="center">
+
+</p> <p align="center"> <a href="https://www.linkedin.com/in/rhiannon-fillingham"><img src="https://img.shields.io/badge/LinkedIn-Rhiannon_Fillingham-blue?logo=linkedin" /></a> <a href="mailto:rhiannon.filli@gmail.com"><img src="https://img.shields.io/badge/Email-rhiannon.filli%40gmail.com-red?logo=gmail" /></a> </p>
